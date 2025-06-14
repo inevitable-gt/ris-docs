@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=1440, initial-scale=1.0" />
+  <title>Reverse Instruction Set Docs</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;800&family=M+PLUS+1p:wght@800&family=Roboto:wght@400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="frame">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="side-header">
+        <div class="side-header-top">
+          <div class="side-logo"></div>
+          <div class="side-title">REVERSE INSTRUCTION SET</div>
+        </div>
+        <div class="side-header-bottom">
+          <div class="search-bar">
+            <input class="search-input" type="text" placeholder="Search..." />
+            <span class="search-icon">&#128269;</span>
+          </div>
+        </div>
+      </div>
+      <nav class="side-footer">
+        <a class="side-item" href="#getstarted">GET STARTED</a>
+        <a class="side-item" href="#build">BUILD YOUR FIRST OS</a>
+        <a class="side-item" href="#prebuild">PRE-BUILT COMPONENTS</a>
+        <a class="side-item" href="#errors">COMMON ERRORS</a>
+        <a class="side-item" href="#faq">FAQs</a>
+      </nav>
+      <div class="sidebar-line"></div>
+    </aside>
+    <!-- Main Body -->
+    <main class="body">
+      <nav class="navbar">
+        <div class="documentation">DOCUMENTATION</div>
+      </nav>
+      <section class="main-content">
+        <div class="content-header">
+          <h1 class="content-title">Reverse Instruction Set Documentation</h1>
+          <p class="content-description">
+            This documentation provides a comprehensive guide to the Reverse Instruction Set, an assembly-like language designed to facilitate operating system development in Visual Studio Code.
+          </p>
+        </div>
+        <div class="content-section" id="getstarted">
+          <h2 class="section-title">Getting Started</h2>
+          <p class="section-text">To begin using the Reverse Instruction Set, follow these steps:</p>
+          <ol class="step-list">
+            <li>Install Visual Studio Code.</li>
+            <li>
+              Download the Reverse Instruction Set extension from our
+              <a href="https://github.com/inevitable-gt/ris-extension" target="_blank" rel="noopener noreferrer">Github</a>
+            </li>
+            <img class="step-image" src="github.png" alt="GitHub" />
+            <li>After downloading, go to the extension marketplace in Visual Studio Code and install from .VSIX.</li>
+            <img class="step-image-2" src="VSIX.PNG" alt="VSCode" />
+            <li>Start coding your first OS component, create a file with <code>.ris</code></li>
+            <img class="step-image-3" src="file.PNG" alt="RIS File" />
+          </ol>
+        </div>
+        <div class="content-section" id="build">
+          <h2 class="section-title">Building Your First OS</h2>
+          <p class="section-text">Finish setting up? Ready to build your first Operating System? Let's go!</p>
+          <p class="section-text">1. The structure of a basic Operating System in reverse-instruction-set:</p>
+          <pre class="code-block"><code>
+/                           (Root Directory)
+├── bin/                    (Essential User Binaries)
+│   ├── ls, cp, mv, rm      (Basic commands)
+│   ├── bash, sh            (Shell programs)
+│   └── cat, grep, sed      (Text utilities)
+│
+├── sbin/                   (System Binaries)
+│   ├── init                (System initialization)
+│   ├── mount, umount       (File system utilities)
+│   └── iptables, ifconfig  (Network administration)
+│
+├── etc/                    (Configuration Files)
+│   ├── passwd              (User account info)
+│   ├── fstab               (File system table)
+│   ├── hosts               (Network host mapping)
+│   └── init.d/             (Service startup scripts)
+│
+├── lib/                    (Shared Libraries)
+│   ├── libc.so             (C standard library)
+│   ├── ld-.so              (Dynamic linker)
+│   └── modules/            (Kernel modules)
+│       └── drivers/        (Device drivers)
+│
+├── usr/                    (User Programs & Data)
+│   ├── bin/                (User applications)
+│   ├── lib/                (Application libraries)
+│   ├── share/              (Shared data files)
+│   └── src/                (Source code)
+│       └── /          (Kernel source)
+│
+├── var/                    (Variable Data)
+│   ├── log/                (System logs)
+│   ├── tmp/                (Temporary files)
+│   ├── spool/              (Print/mail queues)
+│   └── run/                (Runtime data)
+│
+├── home/                   (User Home Directories)
+│   ├── user1/
+│   ├── user2/
+│   └── admin/
+│
+├── root/                   (Root User Home)
+│
+├── tmp/                    (Temporary Files)
+│
+├── dev/                    (Device Files)
+│   ├── sda, sdb            (Storage devices)
+│   ├── tty0, tty1          (Terminal devices)
+│   ├── null, zero          (Special devices)
+│   └── random, urandom     (Random number generators)
+│
+├── proc/                   (Process Information - Virtual FS)
+│   ├── cpuinfo             (CPU information)
+│   ├── meminfo             (Memory information)
+│   ├── 1234/               (Process ID directories)
+│   └── sys/                (Kernel parameters)
+│
+├── sys/                    (System Information - Virtual FS)
+│   ├── class/              (Device classes)
+│   ├── devices/            (Device hierarchy)
+│   └── kernel/             (Kernel information)
+│
+├── mnt/                    (Mount Points)
+│   ├── cdrom/
+│   ├── usb/
+│   └── network/
+│
+├── media/                  (Removable Media)
+│   ├── usb0/
+│   └── cdrom0/
+│
+└── boot/                   (Boot Files)
+    ├── vmlinuz             (Kernel image)
+    ├── initrd.img          (Initial RAM disk)
+    └── grub/               (Boot loader config)
+          </code></pre>
+          <p class="section-text">2. The basic syntax of reverse-instruction-set:</p>
+          <pre class="code-block">
+Comments:
+Lines starting with ; are treated as comments.
+<code class="comment"> ; This is a comment </code>
+
+Instructions:
+Recognized instructions (keywords) include PRN, VAR, and HLT. These are highlighted as control keywords.
+<code class="instruction"> 
+  PRN
+  VAR
+  HLT
+</code>
+
+Variables:
+Variables are referenced using ${variableName} syntax.
+<code class="variable"> ${myVariable}</code>
+
+Strings:
+Double-quoted text is treated as a string.<code class="string"> "Hello World!" </code>
+
+Labels:
+Labels are identifiers at the start of a line followed by a colon.
+<code class="label"> 
+  start:
+  loop1:
+</code>
+
+Operators:
+The operators <code class="operate"> >>, <<, and = </code> are recognized.
+          </pre>
+          <p class="section-text">3. Snippets in reverse-instruction-set:</p>
+          <pre class="code-block"><code>
+Print Statement (prn):
+Inserts PRN ${message} >> to print a message to the console.
+
+Variable Declaration (var):
+Inserts VAR ${name} = ${value} to declare a variable.
+
+Input Variable (input):
+Inserts VAR ${name} = << ${prompt} to declare a variable and assign user input.
+
+Halt Program (hlt):
+Inserts HLT to halt program execution.
+
+Hello World Program (hello):
+Inserts a simple "Hello, World!" RIS program with print and halt.
+
+User Input Program (greet):
+Inserts a program that welcomes the user, asks for their name, greets them, and halts.
+          </code></pre>
+        </div>
+        <div class="content-section" id="prebuild">
+          <h2 class="section-title">Pre-Built Components</h2>
+          <p class="section-text">
+            Explore our library of pre-built components that you can integrate into your OS projects.<br>
+            We don't have much cause there are no users right now, Be the
+            <a href="https://discord.gg/jfSV3Efz" target="_blank" rel="noopener noreferrer">First</a>
+          </p>
+          <div class="component-list">
+            <div class="component-item">
+              <h3 class="component-title">A simple kernel</h3>
+              <p class="component-description">
+                Prints a startup message. Asks for a username and greets the user. Prompts for a command and echoes it back. Prints a shutdown message and halts.
+              </p>
+              <pre class="code-block"><code>
+; Simple RIS Kernel Example
+
+PRN RIS Kernel started. >>
+VAR user = << Enter your username:
+PRN Welcome, ${user}! >>
+VAR cmd = << Enter a command:
+PRN You entered: ${cmd} >>
+PRN Shutting down kernel... >>
+HLT
+              </code></pre>
+            </div>
+            <div class="component-item">
+              <h3 class="component-title">A Simple bootloader</h3>
+              <pre class="code-block"><code>
+; Simple RIS Bootloader Example
+
+PRN Bootloader starting... >>
+; Initialize variables (if needed)
+VAR boot_status = 1
+
+; Simulate loading the kernel
+PRN Loading kernel... >>
+VAR kernel_loaded = 1
+
+; Boot complete
+PRN Boot complete! >>
+HLT
+              </code></pre>
+            </div>
+          </div>
+        </div>
+        <div class="content-section" id="errors">
+          <h2 class="section-title">Common Errors</h2>
+          <p class="section-text">
+            No errors reported.
+            <a href="https://discord.gg/jfSV3Efz" target="_blank" rel="noopener noreferrer">First</a>
+          </p>
+        </div>
+        <div class="content-section" id="faq">
+          <h2 class="section-title">FAQs</h2>
+          <p class="section-text">
+            No questions asked.
+            <a href="https://discord.gg/jfSV3Efz" target="_blank" rel="noopener noreferrer">First</a>
+          </p>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script src="main.js"></script>
+</body>
+</html>
